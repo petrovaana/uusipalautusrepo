@@ -12,5 +12,5 @@ y = int(input("luku 2: "))
 print(f"Lukujen {x} ja {y} summa on {summa(x, y)}")  # muutos bugikorjaus-branchissa
 print(f"Lukujen {x} ja {y} erotus on {erotus(x, y)}")  # muutos bugikorjaus-branchissa
 
-logger("lopetetaan ohjelma")
+logger("lopetetaan") #Otin pois ohjelma saannan
 print("goodbye!")
