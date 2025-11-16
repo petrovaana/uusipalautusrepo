@@ -17,6 +17,14 @@ Login With Incorrect Password
     Click Button  Login
     Login Should Fail With Message  Invalid username or password
 
+#Login With Nonexistent Username
+#    [Documentation]
+#    Input Text   username  nonexistent
+#    Input Password  password  somerandom
+#    Click Button  Login
+#    Login Page Should Be Open
+#    Page Should Contain  Invalid username or password
+
 *** Keywords ***
 Login Should Succeed
     Main Page Should Be Open

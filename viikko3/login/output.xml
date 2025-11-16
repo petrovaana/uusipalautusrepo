@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.14.0 on win32)" generated="2025-11-14T19:20:37.409681" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\Anastasia\uusiuusi\viikko3\login\src\tests">
+<suite id="s1-s1" name="Home" source="C:\Users\Anastasia\uusiuusi\viikko3\login\src\tests\home.robot">
+<kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-14T19:20:37.954122" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000013577911940&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-14T19:20:37.953732" elapsed="0.000441"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--incognito</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-14T19:20:37.954353" elapsed="0.000174"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:37.952935" elapsed="0.001657"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:37.954765" elapsed="0.000029"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--private-window</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:37.954889" elapsed="0.000026"/>
+</kw>
+<status status="NOT RUN" start="2025-11-14T19:20:37.954652" elapsed="0.000313"/>
+</branch>
+<status status="PASS" start="2025-11-14T19:20:37.952900" elapsed="0.002108"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.05 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:37.955290" elapsed="0.000032"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:37.955418" elapsed="0.000026"/>
+</kw>
+<status status="NOT RUN" start="2025-11-14T19:20:37.955075" elapsed="0.000412"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-11-14T19:20:37.955629" elapsed="0.000278"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:37.955539" elapsed="0.000419"/>
+</branch>
+<status status="PASS" start="2025-11-14T19:20:37.955059" elapsed="0.000936"/>
+</if>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-11-14T19:20:37.956564" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-11-14T19:20:37.956111" elapsed="2.264409"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:37.952642" elapsed="2.268206"/>
+</kw>
+<test id="s1-s1-t1" name="Click Login Link" line="8">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" owner="AppLibrary">
+<status status="PASS" start="2025-11-14T19:20:40.223047" elapsed="2.053546"/>
+</kw>
+<kw name="Go To Starting Page">
+<msg time="2025-11-14T19:20:42.280656" level="FAIL">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" start="2025-11-14T19:20:42.280497" elapsed="0.000282">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:40.222447" elapsed="2.058721">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:40.221079" elapsed="2.060973">Setup failed:
+No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</test>
+<test id="s1-s1-t2" name="Click Register Link" line="12">
+<kw name="Reset Application And Go To Starting Page" type="SETUP">
+<kw name="Reset Application" owner="AppLibrary">
+<status status="PASS" start="2025-11-14T19:20:42.285341" elapsed="2.049544"/>
+</kw>
+<kw name="Go To Starting Page">
+<msg time="2025-11-14T19:20:44.339955" level="FAIL">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" start="2025-11-14T19:20:44.339792" elapsed="0.000291">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:42.284831" elapsed="2.055900">No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:42.283655" elapsed="2.057851">Setup failed:
+No keyword with name 'Go To Starting Page' found. Did you try using keyword 'SeleniumLibrary.Go To' and forgot to use enough whitespace between keyword and arguments?</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-11-14T19:20:44.344280" elapsed="2.759529"/>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:37.501085" elapsed="9.602984"/>
+</suite>
+<suite id="s1-s2" name="Login" source="C:\Users\Anastasia\uusiuusi\viikko3\login\src\tests\login.robot">
+<kw name="Open And Configure Browser" owner="resource" type="SETUP">
+<if>
+<branch type="IF" condition="$BROWSER == 'chrome'">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-11-14T19:20:47.115889" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000135778B6350&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-11-14T19:20:47.115354" elapsed="0.000606"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--incognito</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2025-11-14T19:20:47.116182" elapsed="0.000343"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:47.114874" elapsed="0.001747"/>
+</branch>
+<branch type="ELSE IF" condition="$BROWSER == 'firefox'">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].FirefoxOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:47.116927" elapsed="0.000049"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--private-window</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:47.117157" elapsed="0.000070"/>
+</kw>
+<status status="NOT RUN" start="2025-11-14T19:20:47.116704" elapsed="0.000741"/>
+</branch>
+<status status="PASS" start="2025-11-14T19:20:47.114821" elapsed="0.002738"/>
+</if>
+<if>
+<branch type="IF" condition="$HEADLESS == 'true'">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.05 seconds</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:47.118078" elapsed="0.000054"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" start="2025-11-14T19:20:47.118296" elapsed="0.000045"/>
+</kw>
+<status status="NOT RUN" start="2025-11-14T19:20:47.117701" elapsed="0.000712"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-11-14T19:20:47.118624" elapsed="0.000435"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:47.118474" elapsed="0.000668"/>
+</branch>
+<status status="PASS" start="2025-11-14T19:20:47.117656" elapsed="0.001546"/>
+</if>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-11-14T19:20:47.119814" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<arg>browser=${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-11-14T19:20:47.119386" elapsed="1.356154"/>
+</kw>
+<status status="PASS" start="2025-11-14T19:20:47.114559" elapsed="1.361265"/>
+</kw>
+<test id="s1-s2-t1" name="Login With Nonexistent Username" line="20">
+<kw name="Reset Application Create User And Go To Login Page" type="SETUP">
+<msg time="2025-11-14T19:20:48.479722" level="FAIL">No keyword with name 'Reset Application Create User And Go To Login Page' found. Did you try using keyword 'AppLibrary.Reset Application' and forgot to use enough whitespace between keyword and arguments?</msg>
+<status status="FAIL" start="2025-11-14T19:20:48.479590" elapsed="0.000257">No keyword with name 'Reset Application Create User And Go To Login Page' found. Did you try using keyword 'AppLibrary.Reset Application' and forgot to use enough whitespace between keyword and arguments?</status>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:48.476049" elapsed="0.004431">Setup failed:
+No keyword with name 'Reset Application Create User And Go To Login Page' found. Did you try using keyword 'AppLibrary.Reset Application' and forgot to use enough whitespace between keyword and arguments?</status>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-11-14T19:20:48.482395" elapsed="2.610894"/>
+</kw>
+<status status="FAIL" start="2025-11-14T19:20:47.107226" elapsed="3.986287"/>
+</suite>
+<status status="FAIL" start="2025-11-14T19:20:37.414653" elapsed="13.682687"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="0" fail="3" skip="0">Tests</stat>
+<stat name="Home" id="s1-s1" pass="0" fail="2" skip="0">Tests.Home</stat>
+<stat name="Login" id="s1-s2" pass="0" fail="1" skip="0">Tests.Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
