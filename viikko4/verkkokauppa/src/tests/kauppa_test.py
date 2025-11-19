@@ -1,9 +1,14 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 import unittest
 from unittest.mock import Mock, ANY
-from kauppa import Kauppa
-from viitegeneraattori import Viitegeneraattori
-from varasto import Varasto
-from tuote import Tuote
+from src.kauppa import Kauppa
+from src.viitegeneraattori import Viitegeneraattori
+from src.varasto import Varasto
+from src.tuote import Tuote
 
 class TestKauppa(unittest.TestCase):
     def test_maksettaessa_ostos_pankin_metodia_tilisiirto_kutsutaan(self):
@@ -19,11 +24,15 @@ class TestKauppa(unittest.TestCase):
         def varasto_saldo(tuote_id):
             if tuote_id == 1:
                 return 10
+            if tuote_id == 2:
+                return 0
 
         # tehdään toteutus hae_tuote-metodille
         def varasto_hae_tuote(tuote_id):
             if tuote_id == 1:
                 return Tuote(1, "maito", 5)
+            if tuote_id == 2:
+                return Tuote(2, "vesi", 3)
 
         # otetaan toteutukset käyttöön
         varasto_mock.saldo.side_effect = varasto_saldo
@@ -35,8 +44,14 @@ class TestKauppa(unittest.TestCase):
         # tehdään ostokset
         kauppa.aloita_asiointi()
         kauppa.lisaa_koriin(1)
+        kauppa.lisaa_koriin(2)
         kauppa.tilimaksu("pekka", "12345")
 
         # varmistetaan, että metodia tilisiirto on kutsuttu
-        pankki_mock.tilisiirto.assert_called()
+        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", ANY, 5)
         # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista
+
+    #Testasin vaa muuttamalla annettuja arvoja. Vaihoin esim toho varasto_hae_tuote
+    #toisen tuotteen ja sit varasto_saldoon et onks toi toinen loppu vai ei eli salo 0
+    #vai enemmän ja sit noit ku tehää ostoksii niin muunsin ain et lisättiiks koriin 
+    #tuote 1 vai tuote 2
