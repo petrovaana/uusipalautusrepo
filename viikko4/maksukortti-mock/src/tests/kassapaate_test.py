@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 import unittest
 from unittest.mock import Mock, ANY
 from kassapaate import Kassapaate, HINTA
@@ -23,3 +27,17 @@ class TestKassapaate(unittest.TestCase):
         self.kassa.osta_lounas(maksukortti_mock)
 
         maksukortti_mock.osta.assert_not_called()
+
+    def test_lataa_kortille_rahaa(self):
+        maksukortti_mock = Mock()
+        maksukortti_mock.saldo.return_value = 0
+
+        self.kassa.lataa(maksukortti_mock, 10)
+    
+    def test_ei_lataa_negatiivista_maaraa(self):
+        maksukortti_mock = Mock()
+        maksukortti_mock.saldo.return_value = 0
+
+        self.kassa.lataa(maksukortti_mock, -10)
+
+        maksukortti_mock.lataa.assert_not_called()
