@@ -14,9 +14,8 @@ class TestKauppa(unittest.TestCase):
     def setUp(self):
         self.pankki_mock = Mock()
         self.viitegeneraattori_mock = Mock()
-        self.ostoskori_mock = Mock()
         self.varasto_mock = Mock()
-        # palautetaan aina arvo 42
+
         self.viitegeneraattori_mock.uusi.return_value = 42
 
         self.tuote1 = Tuote(1, "maito", 5)
@@ -51,10 +50,7 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
         self.kauppa.tilimaksu("pekka", "12345")
-
-        # varmistetaan, että metodia tilisiirto on kutsuttu
-        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", ANY, 5)
-        # toistaiseksi ei välitetä kutsuun liittyvistä argumenteista       
+        self.pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", ANY, 5)      
 
     def test_kaksi_tuotetta_oikea_summa(self):
         self.kauppa.aloita_asiointi()
@@ -70,27 +66,29 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(1)
         self.kauppa.lisaa_koriin(3)
         self.kauppa.tilimaksu("loppu", "111")
-
         self.pankki_mock.tilisiirto.assert_called_with("loppu", 42, "111", ANY, 5)
     
     def test_aloitus(self):
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
-
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(2)
-
         self.kauppa.tilimaksu("nollaus", "112")
-
         self.pankki_mock.tilisiirto.assert_called_with("nollaus", 42, "112", ANY, 3)
-    
+
+
     def test_poista_korista(self):
         ostoskori_mock = Mock()
         self.kauppa._ostoskori = ostoskori_mock
-
         self.kauppa.poista_korista(1)
-
         self.varasto_mock.hae_tuote.assert_called_with(1)
         ostoskori_mock.poista.assert_called_with(self.tuote1)
         self.varasto_mock.palauta_varastoon.assert_called_with(self.tuote1)
-    #Testattavuus nyt 87% 
+
+#Muistelin et kaikki luokat piti testata, mut oli vääräs mut no tossa vielä nämä..
+    def test_tuote_str(self):
+        tuote_nimi = Tuote(4, "testi", 2)
+        self.assertEqual(str(tuote_nimi), "testi")
+
+    def test_tuote_eq(self):
+        self.assertFalse(self.tuote1 == self.tuote2)
